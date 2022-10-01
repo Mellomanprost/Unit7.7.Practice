@@ -21,6 +21,8 @@ namespace Unit7._7.Practice
             Console.WriteLine(Delivery.Address);
 
         }
+
+
         //public void GetDeliveryType()
         //{
         //    bool flagForExit = false;

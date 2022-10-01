@@ -78,8 +78,8 @@ namespace Unit7._7.Practice
     {
         public override void GetDeliveryAddress()
         {
-            Address = "Этот магазин";
-            Console.WriteLine("Для покупки товара пройдите на кассу.");
+            Address = "у главного входа";
+            Console.Write("Для покупки товара пройдите на кассу ");
         }
     }
 

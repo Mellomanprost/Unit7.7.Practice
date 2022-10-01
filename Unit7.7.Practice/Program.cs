@@ -10,10 +10,8 @@ namespace Unit7._7.Practice
     {
         static void Main(string[] args)
         {
-            Shop shop = new Shop();
-            shop.GetDeliveryType();
-
-
+            MyOrders myOrders = new MyOrders();
+            myOrders.GetOrder();
         }
     }
 }
