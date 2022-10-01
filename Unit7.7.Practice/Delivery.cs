@@ -8,7 +8,7 @@ namespace Unit7._7.Practice
 {
     public abstract class Delivery
     {
-        public string Address;
+        protected internal string Address;
         public virtual void GetDeliveryAddress()
         {
             Address = (Console.ReadLine()).ToString();
@@ -42,7 +42,8 @@ namespace Unit7._7.Practice
             while (!flagForExit)
             {
                 Console.WriteLine("Выберите магазин: ");
-                if (int.TryParse(Console.ReadLine(), out selectShop))
+                bool iSInt = int.TryParse(Console.ReadLine(), out selectShop);
+                if (iSInt && selectShop > 0 && selectShop < 4)
                 {
                     switch (selectShop)
                     {
@@ -76,9 +77,10 @@ namespace Unit7._7.Practice
 
     public class ShopDelivery : Delivery
     {
+        private string shopName = "10element";
         public override void GetDeliveryAddress()
         {
-            Address = "у главного входа";
+            Address = "у главного входа магазина " + shopName;
             Console.Write("Для покупки товара пройдите на кассу ");
         }
     }

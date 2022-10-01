@@ -22,7 +22,8 @@ namespace Unit7._7.Practice
                 {
                     Console.WriteLine(i + 1 + " - " + deliveryType[i]);
                 }
-                if (int.TryParse(Console.ReadLine(), out selectDeliveryType))
+
+                if (int.TryParse(Console.ReadLine(), out selectDeliveryType) && selectDeliveryType > 0 && selectDeliveryType < 4)
                 {
                     switch (selectDeliveryType)
                     {
@@ -54,10 +55,14 @@ namespace Unit7._7.Practice
                 else
                 {
                     Console.WriteLine("Указано неверное значение!\nДля выхода напишите: Выход");
+                    Console.WriteLine("Или попробуйте еще раз.");
                     if (Console.ReadLine() == "Выход")
                         flagForExit = true;
                 }
             }
+
+
+
 
         }
 

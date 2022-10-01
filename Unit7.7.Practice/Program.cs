@@ -12,6 +12,7 @@ namespace Unit7._7.Practice
         {
             MyOrders myOrders = new MyOrders();
             myOrders.GetOrder();
+            
         }
     }
 }
