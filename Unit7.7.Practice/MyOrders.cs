@@ -14,7 +14,7 @@ namespace Unit7._7.Practice
             int numberSelectedProduct;
             bool flagForExit = false;
             List<ProductInfo> productInfos = new List<ProductInfo>();
-            ProductInfo productInfo = new ProductInfo();
+            (string ProdType, string ProdName, double ProdPrice, int NumOfProd) ProdTuple = default;
 
             Products products = new Products("Книга", "\"Большая энциклопедия\"", 5.99, 3);
             Products products2 = new Products("Книга", "Герберт Шилдт \"C# 4.0: полное руководство\"", 8.89, 1);
@@ -25,6 +25,7 @@ namespace Unit7._7.Practice
             Product book2 = new Product(products2, 2);
             Product toy1 = new Product(products3, 3);
             Product toy2 = new Product(products4, 4);
+
             Console.WriteLine("В наличии есть:");
             book1.ShowProduct();
             book2.ShowProduct();
@@ -40,22 +41,25 @@ namespace Unit7._7.Practice
                     switch (numberSelectedProduct)
                     {
                         case 1:
-                            AddToOrder(products, book1, ref productInfos, ref productInfo);
+                            GetProducts(products, ref ProdTuple);
                             break;
                         case 2:
-                            AddToOrder(products2, book2, ref productInfos, ref productInfo);
+                            GetProducts(products2, ref ProdTuple);
                             break;
                         case 3:
-                            AddToOrder(products3, toy2, ref productInfos, ref productInfo);
+                            GetProducts(products3, ref ProdTuple);
                             break;
                         case 4:
-                            AddToOrder(products4, toy2, ref productInfos, ref productInfo);
+                            GetProducts(products4, ref ProdTuple);
                             break;
                     }
-                    foreach (var item2 in productsAdd.productInfos)
+                    GetProductsToList(ProdTuple, out ProductInfo productInfoList);
+                    productInfos.Add(productInfoList);
+                    foreach (var item in productInfos)
                     {
                         Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
                     }
+
 
                 }
                 else
@@ -67,21 +71,32 @@ namespace Unit7._7.Practice
 
 
 
-            Console.WriteLine("У вас в заказе:");
+            Console.WriteLine("Ваш заказ:");
+            foreach (var itemO in productInfos)
+            {
+                Console.WriteLine(itemO.ProductTypeInf + " " + "1 шт. " + itemO.ProductNameInf + " стоимостью " + itemO.ProductPriceInf + "$");
+            }
+
             Shop shop = new Shop();
             shop.GetDeliveryType();
         }
-        private void AddToOrder(Products productsAdd, Product productAdd, ref List<ProductInfo> productInfosAdd, ref ProductInfo productInfoAdd)
+        private void GetProducts(Products productsAdd, ref (string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTuple)
         {
-            Console.WriteLine("Добавлено в заказ: {0} {1}.\nВаш заказ:", productsAdd.ProductType, productsAdd.ProductName);
-            productAdd.GetProduct();
-            foreach (var item in productsAdd.productInfos)
-            {
-                Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
-            }
-
-            //productInfosAdd.Add(productInfoAdd);
-
+            prodTuple.ProdType = productsAdd.ProductType;
+            prodTuple.ProdName = productsAdd.ProductName;
+            prodTuple.ProdPrice = productsAdd.ProductPrice;
+            prodTuple.NumOfProd = 1;
         }
+        public ProductInfo GetProductsToList((string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTupleToList, out ProductInfo productInfoList)
+        {
+            ProductInfo productInfo = new ProductInfo();
+            productInfo.ProductTypeInf = prodTupleToList.ProdType;
+            productInfo.ProductNameInf = prodTupleToList.ProdName;
+            productInfo.ProductPriceInf = prodTupleToList.ProdPrice;
+            productInfo.NumberOfProductsInf = prodTupleToList.NumOfProd;
+            productInfoList = productInfo;
+            return productInfoList;
+        }
+
     }
 }
