@@ -25,7 +25,8 @@ namespace Unit7._7.Practice
         public void GetDeliveryAddressForCourier()
         {
             GetDeliveryAddress();
-            Console.WriteLine("Ваш заказ будет доставлен курьером в течении 2 дней по адресу: " + Address);
+            if (Address != "")
+                Console.WriteLine("Ваш заказ будет доставлен курьером в течении 2 дней по адресу: " + Address);
         }
 
     }

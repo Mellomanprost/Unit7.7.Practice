@@ -57,11 +57,11 @@ namespace Unit7._7.Practice
                     myOrderList.Add(productInfoList);
                     ShowMyOrder(myOrderList);
                 }
-                else
+                else if (userEnter != "Выход" && userEnter != "выход")
                 {
-                    if (userEnter != "Выход")
-                        Console.WriteLine("Указано неверное значение!");
+                    Console.WriteLine("Указано неверное значение!");
                 }
+
                 if (userEnter == "Выход" || userEnter == "выход")
                     flagForExit = true;
             }

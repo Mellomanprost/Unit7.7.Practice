@@ -16,7 +16,7 @@ namespace Unit7._7.Practice
             Order<HomeDelivery> order1 = new Order<HomeDelivery>();
             while (!flagForExit)
             {
-                Console.WriteLine("Выберите способ доставки (Для выхода напишите Выход): ");
+                Console.WriteLine("\nВыберите способ доставки (Для выхода напишите Выход): ");
                 for (int i = 0; i < order1.Description.Length; i++)
                 {
                     Console.WriteLine(i + 1 + " - " + order1.Description[i]);
@@ -30,23 +30,34 @@ namespace Unit7._7.Practice
                             Console.WriteLine("Доставка почтой осуществляется 5 дней, курьером в течении 2 дней.\nДоставить почтой или курьером?");
                             var enterHomeDelivery = Console.ReadLine();
                             order1.Delivery = new HomeDelivery();
-
                             if (enterHomeDelivery == "почтой" || enterHomeDelivery == "Почтой")
                             {
                                 order1.Delivery.GetDeliveryAddress();
-                                order1.DisplayAddress();
-                                Console.WriteLine("Ваш заказ будет доставлен через 5 дней почтой по адресу: " + order1.Delivery.Address);
+                                if (order1.Delivery.Address != "")
+                                {
+                                    order1.DisplayAddress();
+                                    Console.WriteLine("Ваш заказ будет доставлен через 5 дней почтой по адресу: " + order1.Delivery.Address);
+                                }
+                                else
+                                {
+                                    Console.WriteLine("Адрес не указан!");
+                                    break;
+                                }
                             }
                             else if (enterHomeDelivery == "курьером" || enterHomeDelivery == "Курьером")
                             {
                                 order1.Delivery.GetDeliveryAddressForCourier();
+                                if (order1.Delivery.Address == "")
+                                {
+                                    Console.WriteLine("Адрес не указан!");
+                                    break;
+                                }
                             }
                             else
                             {
                                 Console.WriteLine("Не выбран способ доставки!");
                                 break;
                             }
-
                             flagForExit = true;
                             break;
                         case 2:
@@ -56,7 +67,6 @@ namespace Unit7._7.Practice
                             Console.Write("Ваш товар в течении дня будет доставлен в наш магазин по адресу: ");
                             order2.DisplayAddress();
                             Console.WriteLine();
-
                             flagForExit = true;
                             break;
                         case 3:
@@ -70,12 +80,11 @@ namespace Unit7._7.Practice
                 }
                 else
                 {
-                    if (userEnter != "Выход")
+                    if (userEnter != "Выход" && userEnter != "выход")
                         Console.WriteLine("Указано неверное значение!");
                 }
                 if (userEnter == "Выход" || userEnter == "выход")
                     flagForExit = true;
-
             }
         }
     }
