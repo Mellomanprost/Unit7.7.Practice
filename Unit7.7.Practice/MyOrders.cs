@@ -33,23 +33,18 @@ namespace Unit7._7.Practice
                     switch (numberSelectedProduct)
                     {
                         case 1:
-                            products.
                             Console.WriteLine("Добавлено в заказ: " + products.ProductType + " " + products.ProductName);
+                            book1.GetProduct();
                             flagForExit = true;
                             break;
                         case 2:
-                            Order<PickPointDelivery> order2 = new Order<PickPointDelivery>();
-                            order2.Delivery = new PickPointDelivery();
-                            order2.Delivery.GetDeliveryAddress();
-                            order2.DisplayAddress();
 
                             flagForExit = true;
                             break;
                         case 3:
-                            Order<ShopDelivery> order3 = new Order<ShopDelivery>();
-                            order3.Delivery = new ShopDelivery();
-                            order3.Delivery.GetDeliveryAddress();
-                            order3.DisplayAddress();
+                            flagForExit = true;
+                            break;
+                        case 4:
                             flagForExit = true;
                             break;
                     }
