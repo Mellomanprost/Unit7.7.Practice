@@ -8,28 +8,34 @@ namespace Unit7._7.Practice
 {
     class Shop
     {
+        public readonly string shopName = "\"10element\"";
 
         public void GetDeliveryType()
         {
             bool flagForExit = false;
-            int selectDeliveryType;
+            Order<CurrentShop> order = new Order<CurrentShop>();
             Order<HomeDelivery> order1 = new Order<HomeDelivery>();
+            order1.Delivery = new HomeDelivery();
+            Order<PickPointDelivery> order2 = new Order<PickPointDelivery>();
+            order2.Delivery = new PickPointDelivery();
+            Order<ShopDelivery> order3 = new Order<ShopDelivery>();
+            order3.Delivery = new ShopDelivery();
+
             while (!flagForExit)
             {
                 Console.WriteLine("\nВыберите способ доставки (Для выхода напишите Выход): ");
-                for (int i = 0; i < order1.Description.Length; i++)
+                for (int i = 0; i < order.Description.Length; i++)
                 {
-                    Console.WriteLine(i + 1 + " - " + order1.Description[i]);
+                    Console.WriteLine(i + 1 + " - " + order.Description[i]);
                 }
                 var userEnter = Console.ReadLine();
-                if (int.TryParse(userEnter, out selectDeliveryType) && selectDeliveryType > 0 && selectDeliveryType < 4)
+                if (int.TryParse(userEnter, out int selectDeliveryType) && selectDeliveryType > 0 && selectDeliveryType < 4)
                 {
                     switch (selectDeliveryType)
                     {
                         case 1:
                             Console.WriteLine("Доставка почтой осуществляется 5 дней, курьером в течении 2 дней.\nДоставить почтой или курьером?");
                             var enterHomeDelivery = Console.ReadLine();
-                            order1.Delivery = new HomeDelivery();
                             if (enterHomeDelivery == "почтой" || enterHomeDelivery == "Почтой")
                             {
                                 order1.Delivery.GetDeliveryAddress();
@@ -61,8 +67,6 @@ namespace Unit7._7.Practice
                             flagForExit = true;
                             break;
                         case 2:
-                            Order<PickPointDelivery> order2 = new Order<PickPointDelivery>();
-                            order2.Delivery = new PickPointDelivery();
                             order2.Delivery.GetDeliveryAddress();
                             Console.Write("Ваш товар в течении дня будет доставлен в наш магазин по адресу: ");
                             order2.DisplayAddress();
@@ -70,8 +74,6 @@ namespace Unit7._7.Practice
                             flagForExit = true;
                             break;
                         case 3:
-                            Order<ShopDelivery> order3 = new Order<ShopDelivery>();
-                            order3.Delivery = new ShopDelivery();
                             order3.Delivery.GetDeliveryAddress();
                             order3.DisplayAddress();
                             flagForExit = true;

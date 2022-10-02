@@ -11,32 +11,33 @@ namespace Unit7._7.Practice
 
         public void GetOrder()
         {
-            int numberSelectedProduct;
             bool flagForExit = false;
             List<ProductInfo> myOrderList = new List<ProductInfo>();
             (string ProdType, string ProdName, double ProdPrice, int NumOfProd) ProdTuple = default;
 
-            Products products = new Products("Книга", "\"Большая энциклопедия\"", 5.99, 3);
-            Products products2 = new Products("Книга", "Герберт Шилдт \"C# 4.0: полное руководство\"", 8.89, 1);
-            Products products3 = new Products("Игрушка", "модель легкового автомобиля \"Ford Focus\"", 4.79, 2);
-            Products products4 = new Products("Игрушка", "кукла \"Barbie\"", 5.49, 1);
+            ShopProduct products = new ShopProduct("Книга", "\"Большая энциклопедия\"", 5.99, 3);
+            ShopProduct products2 = new ShopProduct("Книга", "Герберт Шилдт \"C# 4.0: полное руководство\"", 8.89, 1);
+            ShopProduct products3 = new ShopProduct("Игрушка", "модель легкового автомобиля \"Ford Focus\"", 4.79, 2);
+            ShopProduct products4 = new ShopProduct("Игрушка", "кукла \"Barbie\"", 5.49, 1);
 
-            Product book1 = new Product(products, 1);
-            Product book2 = new Product(products2, 2);
-            Product toy1 = new Product(products3, 3);
-            Product toy2 = new Product(products4, 4);
+            SaleProduct saleProduct = new SaleProduct();
 
-            Console.WriteLine("В наличии есть:");
+            ShopItem book1 = new ShopItem(products, 1);
+            ShopItem book2 = new ShopItem(products2, 2);
+            ShopItem toy1 = new ShopItem(products3, 3);
+            ShopItem toy2 = new ShopItem(products4, 4);
+            Console.WriteLine("На данный момент у нас имеются в наличии следующие товары:");
             book1.ShowProduct();
             book2.ShowProduct();
             toy1.ShowProduct();
             toy2.ShowProduct();
+            saleProduct.ShowProducts(5);
 
             while (!flagForExit)
             {
-                Console.WriteLine("\nУкажите номер товара, который хотите выбрать или для выхода напишите: Выход");
+                Console.WriteLine("\nУкажите номер товара, который хотите выбрать или добавить в корзину.\n(Чтобы выйти напишите: Выход)");
                 var userEnter = Console.ReadLine();
-                if (int.TryParse(userEnter, out numberSelectedProduct) && numberSelectedProduct > 0 && numberSelectedProduct < 5)
+                if (int.TryParse(userEnter, out int numberSelectedProduct) && numberSelectedProduct > 0 && numberSelectedProduct < 6)
                 {
                     switch (numberSelectedProduct)
                     {
@@ -52,6 +53,9 @@ namespace Unit7._7.Practice
                         case 4:
                             GetProducts(products4, ref ProdTuple);
                             break;
+                        case 5:
+                            saleProduct.GetSaleProduct(ref ProdTuple);
+                            break;
                     }
                     GetProductsToList(ProdTuple, out ProductInfo productInfoList);
                     myOrderList.Add(productInfoList);
@@ -61,7 +65,6 @@ namespace Unit7._7.Practice
                 {
                     Console.WriteLine("Указано неверное значение!");
                 }
-
                 if (userEnter == "Выход" || userEnter == "выход")
                     flagForExit = true;
             }
@@ -70,7 +73,7 @@ namespace Unit7._7.Practice
             Shop shop = new Shop();
             shop.GetDeliveryType();
         }
-        private void GetProducts(Products productsAdd, ref (string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTuple)
+        private void GetProducts(ShopProduct productsAdd, ref (string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTuple)
         {
             prodTuple.ProdType = productsAdd.ProductType;
             prodTuple.ProdName = productsAdd.ProductName;
@@ -79,11 +82,13 @@ namespace Unit7._7.Practice
         }
         public ProductInfo GetProductsToList((string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTupleToList, out ProductInfo productInfoList)
         {
-            ProductInfo productInfo = new ProductInfo();
-            productInfo.ProductTypeInf = prodTupleToList.ProdType;
-            productInfo.ProductNameInf = prodTupleToList.ProdName;
-            productInfo.ProductPriceInf = prodTupleToList.ProdPrice;
-            productInfo.NumberOfProductsInf = prodTupleToList.NumOfProd;
+            ProductInfo productInfo = new ProductInfo
+            {
+                ProductTypeInf = prodTupleToList.ProdType,
+                ProductNameInf = prodTupleToList.ProdName,
+                ProductPriceInf = prodTupleToList.ProdPrice,
+                NumberOfProductsInf = prodTupleToList.NumOfProd
+            };
             productInfoList = productInfo;
             return productInfoList;
         }
@@ -93,8 +98,6 @@ namespace Unit7._7.Practice
             {
                 Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
             }
-
         }
-
     }
 }

@@ -14,7 +14,6 @@ namespace Unit7._7.Practice
             Address = (Console.ReadLine()).ToString();
         }
     }
-
     public class HomeDelivery : Delivery
     {
         public override void GetDeliveryAddress()
@@ -28,15 +27,12 @@ namespace Unit7._7.Practice
             if (Address != "")
                 Console.WriteLine("Ваш заказ будет доставлен курьером в течении 2 дней по адресу: " + Address);
         }
-
     }
-
     public class PickPointDelivery : Delivery
     {
         (string firstShop, string secondShop, string thirdShop) Shops;
         public override void GetDeliveryAddress()
         {
-            int selectShop;
             bool flagForExit = false;
             Shops.firstShop = "г.Минск, пр-т Машерова 33";
             Shops.secondShop = "г.Минск, пр-т Независимости 99";
@@ -50,7 +46,7 @@ namespace Unit7._7.Practice
             {
                 Console.WriteLine("Выберите магазин: ");
                 var iSInt = Console.ReadLine();
-                if (int.TryParse(iSInt, out selectShop) && selectShop > 0 && selectShop < 4)
+                if (int.TryParse(iSInt, out int selectShop) && selectShop > 0 && selectShop < 4)
                 {
                     switch (selectShop)
                     {
@@ -81,15 +77,22 @@ namespace Unit7._7.Practice
                 Console.WriteLine("Магазин не выбран!");
         }
     }
-
     public class ShopDelivery : Delivery
     {
-        private string shopName = "10element";
+        readonly Shop shop = new Shop();
         public override void GetDeliveryAddress()
         {
-            Address = "у главного входа магазина " + shopName;
+            Address = "у главного входа магазина " + shop.shopName;
             Console.Write("Для покупки товара пройдите на кассу ");
         }
     }
+    public class CurrentShop : Delivery
+    {
+        readonly Shop shop = new Shop();
+        public override void GetDeliveryAddress()
+        {
+            Address = shop.shopName + " расположенный по адресу пр-т Притыцкого 7";
+        }
 
+    }
 }

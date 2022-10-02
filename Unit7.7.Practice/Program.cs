@@ -11,8 +11,10 @@ namespace Unit7._7.Practice
         static void Main(string[] args)
         {
             MyOrders myOrders = new MyOrders();
+            CurrentShop shop = new CurrentShop();
+            shop.GetDeliveryAddress();
+            Console.WriteLine("Добро пожаловать в наш магазин {0}!\n", shop.Address);
             myOrders.GetOrder();
-            
         }
     }
 }
