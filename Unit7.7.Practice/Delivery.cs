@@ -38,7 +38,7 @@ namespace Unit7._7.Practice
             Shops.secondShop = "г.Минск, пр-т Независимости 99";
             Shops.thirdShop = "г.Минск, пр-т Держинского 104";
 
-            Console.WriteLine("Выберите адрес магазина в котором вы хотите забрать товар.");
+            Console.WriteLine("Выберите адрес магазина в котором вы хотите забрать заказ.");
             Console.WriteLine("1 - " + Shops.firstShop + "\n2 - " + Shops.secondShop + "\n3 - " + Shops.thirdShop);
             Console.WriteLine("Для выбора адреса введите номер, который указан перед ним.");
 
@@ -79,19 +79,17 @@ namespace Unit7._7.Practice
     }
     public class ShopDelivery : Delivery
     {
-        readonly Shop shop = new Shop();
         public override void GetDeliveryAddress()
         {
-            Address = "у главного входа магазина " + shop.shopName;
-            Console.Write("Для покупки товара пройдите на кассу ");
+            Address = "у главного входа магазина " + Shop.shopName;
+            Console.Write("Для оплаты заказа пройдите на кассу ");
         }
     }
     public class CurrentShop : Delivery
     {
-        readonly Shop shop = new Shop();
         public override void GetDeliveryAddress()
         {
-            Address = shop.shopName + " расположенный по адресу пр-т Притыцкого 7";
+            Address = Shop.shopName + " расположенный по адресу пр-т Притыцкого 7";
         }
 
     }

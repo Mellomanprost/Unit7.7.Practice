@@ -94,10 +94,13 @@ namespace Unit7._7.Practice
         }
         public void ShowMyOrder(List<ProductInfo> orderList)
         {
+            double summPrice = 0;
             foreach (var item in orderList)
             {
                 Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
+                summPrice += item.ProductPriceInf;
             }
+            Console.WriteLine("Общая стоимость: " + summPrice);
         }
     }
 }

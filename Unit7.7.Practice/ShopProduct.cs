@@ -54,7 +54,7 @@ namespace Unit7._7.Practice
     class ShopItem
     {
         protected internal int ProductId;
-        private ShopProduct products;
+        private readonly ShopProduct products;
 
         public ShopItem(ShopProduct aProducts, int productId)
         {
@@ -68,7 +68,7 @@ namespace Unit7._7.Practice
             products.ShowProducts();
         }
     }
-    class ProductInfo
+     class ProductInfo
     {
         public string ProductTypeInf { get; set; }
         public string ProductNameInf { get; set; }

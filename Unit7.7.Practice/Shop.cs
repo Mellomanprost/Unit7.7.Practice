@@ -8,7 +8,7 @@ namespace Unit7._7.Practice
 {
     class Shop
     {
-        public readonly string shopName = "\"10element\"";
+        public static string shopName = "\"10element\"";
 
         public void GetDeliveryType()
         {
@@ -68,7 +68,7 @@ namespace Unit7._7.Practice
                             break;
                         case 2:
                             order2.Delivery.GetDeliveryAddress();
-                            Console.Write("Ваш товар в течении дня будет доставлен в наш магазин по адресу: ");
+                            Console.Write("Ваш заказ в течении дня будет доставлен в наш магазин по адресу: ");
                             order2.DisplayAddress();
                             Console.WriteLine();
                             flagForExit = true;
