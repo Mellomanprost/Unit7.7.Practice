@@ -48,8 +48,8 @@ namespace Unit7._7.Practice
             while (!flagForExit)
             {
                 Console.WriteLine("Выберите магазин: ");
-                bool iSInt = int.TryParse(Console.ReadLine(), out selectShop);
-                if (iSInt && selectShop > 0 && selectShop < 4)
+                var iSInt = Console.ReadLine();
+                if (int.TryParse(iSInt, out selectShop) && selectShop > 0 && selectShop < 4)
                 {
                     switch (selectShop)
                     {
@@ -70,7 +70,7 @@ namespace Unit7._7.Practice
                 else
                 {
                     Console.WriteLine("Указано неверное значение!\nДля выхода напишите: Выход");
-                    if (Console.ReadLine() == "Выход")
+                    if (iSInt == "Выход" || iSInt == "выход")
                         flagForExit = true;
                 }
             }

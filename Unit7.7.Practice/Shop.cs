@@ -27,7 +27,7 @@ namespace Unit7._7.Practice
                     switch (selectDeliveryType)
                     {
                         case 1:
-                            Console.WriteLine("Доставить почтой или курьером?");
+                            Console.WriteLine("Доставка почтой осуществляется 5 дней, курьером в течении 2 дней.\nДоставить почтой или курьером?");
                             var enterHomeDelivery = Console.ReadLine();
                             order1.Delivery = new HomeDelivery();
 
@@ -73,7 +73,7 @@ namespace Unit7._7.Practice
                     if (userEnter != "Выход")
                         Console.WriteLine("Указано неверное значение!");
                 }
-                if (userEnter == "Выход")
+                if (userEnter == "Выход" || userEnter == "выход")
                     flagForExit = true;
 
             }

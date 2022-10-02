@@ -10,7 +10,7 @@ namespace Unit7._7.Practice
 
     {
         public TDelivery Delivery;
-        public string[] Description = { "Доставка на дом", "Доставка в один из наших магазинов", "Покупка в этом магазине" };
+        public string[] Description = { "Доставка на дом (почтой либо курьером).", "Доставка в один из наших магазинов, расположенных по другому адресу.", "Покупка в этом магазине." };
         public void DisplayAddress()
         {
             Console.WriteLine(Delivery.Address);

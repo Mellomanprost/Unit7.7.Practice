@@ -62,7 +62,7 @@ namespace Unit7._7.Practice
                     if (userEnter != "Выход")
                         Console.WriteLine("Указано неверное значение!");
                 }
-                if (userEnter == "Выход")
+                if (userEnter == "Выход" || userEnter == "выход")
                     flagForExit = true;
             }
             Console.WriteLine("Ваш заказ:");
