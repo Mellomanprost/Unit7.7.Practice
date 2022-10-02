@@ -17,13 +17,13 @@ namespace Unit7._7.Practice
 
             while (!flagForExit)
             {
-                Console.WriteLine("Выберите способ доставки: ");
+                Console.WriteLine("Выберите способ доставки (Для выхода напишите Выход): ");
                 for (int i = 0; i < deliveryType.Length; i++)
                 {
                     Console.WriteLine(i + 1 + " - " + deliveryType[i]);
                 }
-
-                if (int.TryParse(Console.ReadLine(), out selectDeliveryType) && selectDeliveryType > 0 && selectDeliveryType < 4)
+                var userEnter = Console.ReadLine();
+                if (int.TryParse(userEnter, out selectDeliveryType) && selectDeliveryType > 0 && selectDeliveryType < 4)
                 {
                     switch (selectDeliveryType)
                     {
@@ -32,7 +32,21 @@ namespace Unit7._7.Practice
                             order1.Delivery = new HomeDelivery();
                             order1.Delivery.GetDeliveryAddress();
                             order1.DisplayAddress();
+                            Console.WriteLine("Доставить почтой или курьером?");
+                            var enterHomeDelivery = Console.ReadLine();
+                            if (enterHomeDelivery == "почтой" || enterHomeDelivery == "Почтой")
+                            {
 
+                            }
+                            else if (enterHomeDelivery == "курьером" || enterHomeDelivery == "Курьером")
+                            {
+
+                            }
+                            else
+                            {
+                                Console.WriteLine("Не выбран способ доставки!");
+                                break;
+                            }
                             flagForExit = true;
                             break;
                         case 2:
@@ -54,18 +68,13 @@ namespace Unit7._7.Practice
                 }
                 else
                 {
-                    Console.WriteLine("Указано неверное значение!\nДля выхода напишите: Выход");
-                    Console.WriteLine("Или попробуйте еще раз.");
-                    if (Console.ReadLine() == "Выход")
-                        flagForExit = true;
+                    if (userEnter != "Выход")
+                        Console.WriteLine("Указано неверное значение!");
                 }
+                if (userEnter == "Выход")
+                    flagForExit = true;
+
             }
-
-
-
-
         }
-
     }
-
 }

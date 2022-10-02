@@ -21,6 +21,7 @@ namespace Unit7._7.Practice
         {
             Console.Write("Введите адрес доставки: ");
             base.GetDeliveryAddress();
+            Console.WriteLine("Ваш заказ будет доставлен почтой по адресу: " + Address);
         }
     }
 

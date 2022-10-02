@@ -13,7 +13,7 @@ namespace Unit7._7.Practice
         {
             int numberSelectedProduct;
             bool flagForExit = false;
-            List<ProductInfo> productInfos = new List<ProductInfo>();
+            List<ProductInfo> myOrderList = new List<ProductInfo>();
             (string ProdType, string ProdName, double ProdPrice, int NumOfProd) ProdTuple = default;
 
             Products products = new Products("Книга", "\"Большая энциклопедия\"", 5.99, 3);
@@ -54,29 +54,19 @@ namespace Unit7._7.Practice
                             break;
                     }
                     GetProductsToList(ProdTuple, out ProductInfo productInfoList);
-                    productInfos.Add(productInfoList);
-                    foreach (var item in productInfos)
-                    {
-                        Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
-                    }
-
-
+                    myOrderList.Add(productInfoList);
+                    ShowMyOrder(myOrderList);
                 }
                 else
-                    Console.WriteLine("Указано неверное значение!");
+                {
+                    if (userEnter != "Выход")
+                        Console.WriteLine("Указано неверное значение!");
+                }
                 if (userEnter == "Выход")
                     flagForExit = true;
             }
-
-
-
-
             Console.WriteLine("Ваш заказ:");
-            foreach (var itemO in productInfos)
-            {
-                Console.WriteLine(itemO.ProductTypeInf + " " + "1 шт. " + itemO.ProductNameInf + " стоимостью " + itemO.ProductPriceInf + "$");
-            }
-
+            ShowMyOrder(myOrderList);
             Shop shop = new Shop();
             shop.GetDeliveryType();
         }
@@ -96,6 +86,14 @@ namespace Unit7._7.Practice
             productInfo.NumberOfProductsInf = prodTupleToList.NumOfProd;
             productInfoList = productInfo;
             return productInfoList;
+        }
+        public void ShowMyOrder(List<ProductInfo> orderList)
+        {
+            foreach (var item in orderList)
+            {
+                Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
+            }
+
         }
 
     }
