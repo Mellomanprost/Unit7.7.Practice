@@ -25,7 +25,6 @@ namespace Unit7._7.Practice
 
         public void ShowProducts()
         {
-            Console.WriteLine("Под номером - {0}", ProductId);
             if (NumberOfProducts == 1)
             {
                 Console.WriteLine(ProductType + " - " + NumberOfProducts + " шт., " + ProductName + " стоимостью " + ProductPrice + "$");
@@ -35,13 +34,13 @@ namespace Unit7._7.Practice
                 Console.WriteLine(ProductType + " - " + NumberOfProducts + " шт., " + ProductName + " стоимостью " + ProductPrice + "$ за штуку");
             }
         }
-        public void GetProducts(string typeProduct, string productName, double productPrice, int numberOfProducts)
+        public void GetProducts()
         {
             ProductInfo productInfo = new ProductInfo();
-            productInfo.ProductTypeInf = typeProduct;
-            productInfo.ProductNameInf = productName;
-            productInfo.ProductPriceInf = productPrice;
-            productInfo.NumberOfProductsInf = numberOfProducts;
+            productInfo.ProductTypeInf = ProductType;
+            productInfo.ProductNameInf = ProductName;
+            productInfo.ProductPriceInf = ProductPrice;
+            productInfo.NumberOfProductsInf = NumberOfProducts;
             productInfos.Add(productInfo);
         }
 
@@ -58,34 +57,19 @@ namespace Unit7._7.Practice
             ProductId = productId;
         }
 
-        public void ShowProduct(string typeProduct, string productName, double productPrice, int numberOfProducts)
+        public void ShowProduct()
         {
-            products.ShowProducts(typeProduct, productName, productPrice, numberOfProducts);
             Console.WriteLine("Под номером - {0}", ProductId);
-            if (numberOfProducts == 1)
-            {
-                Console.WriteLine(products.ProductType + " - " + products.NumberOfProducts + " шт., " + products.ProductName + " стоимостью " + products.ProductPrice + "$");
-            }
-            else if(numberOfProducts > 0)
-            {
-                Console.WriteLine(products.ProductType + " - " + products.NumberOfProducts + " шт., " + products.ProductName + " стоимостью " + products.ProductPrice + "$ за штуку");
-            }
+            products.ShowProducts();
         }
-        public void GetProduct(string typeProduct, string productName, double productPrice, int numberOfProducts)
+        public void GetProduct()
         {
-            products.GetProducts(typeProduct, productName, productPrice, numberOfProducts);
-            if (numberOfProducts == 1)
-            {
-                Console.WriteLine(products.ProductType + " - " + products.NumberOfProducts + " шт. " + products.ProductName + " стоимостью " + products.ProductPrice + "$");
-            }
-            else if (numberOfProducts > 0)
-            {
-                Console.WriteLine(products.ProductType + " - " + products.NumberOfProducts + " шт. " + products.ProductName + " общей стоимостью " + products.ProductPrice * products.NumberOfProducts + "$");
-            }
-            foreach (var item in products.productInfos)
-            {
-                Console.WriteLine(item);
-            }
+            products.GetProducts();
+            products.NumberOfProducts = 1;
+            //foreach (var item in products.productInfos)
+            //{
+            //    Console.WriteLine(item.ProductTypeInf + " " + products.NumberOfProducts + " шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
+            //}
 
         }
     }

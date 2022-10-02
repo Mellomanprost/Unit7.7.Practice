@@ -13,58 +13,75 @@ namespace Unit7._7.Practice
         {
             int numberSelectedProduct;
             bool flagForExit = false;
-            Products products = new Products();
+            List<ProductInfo> productInfos = new List<ProductInfo>();
+            ProductInfo productInfo = new ProductInfo();
+
+            Products products = new Products("Книга", "\"Большая энциклопедия\"", 5.99, 3);
+            Products products2 = new Products("Книга", "Герберт Шилдт \"C# 4.0: полное руководство\"", 8.89, 1);
+            Products products3 = new Products("Игрушка", "модель легкового автомобиля \"Ford Focus\"", 4.79, 2);
+            Products products4 = new Products("Игрушка", "кукла \"Barbie\"", 5.49, 1);
+
             Product book1 = new Product(products, 1);
-            Product book2 = new Product(products, 2);
-            Product toy1 = new Product(products, 3);
-            Product toy2 = new Product(products, 4);
+            Product book2 = new Product(products2, 2);
+            Product toy1 = new Product(products3, 3);
+            Product toy2 = new Product(products4, 4);
             Console.WriteLine("В наличии есть:");
-            book1.ShowProduct("Книга", "\"Большая энциклопедия\"", 5.99, 3);
-            book2.ShowProduct("Книга", "Герберт Шилдт \"C# 4.0: полное руководство\"", 8.89, 1);
-            toy1.ShowProduct("Игрушка", "модель легкового автомобиля \"Ford Focus\"", 4.79, 2);
-            toy2.ShowProduct("Игрушка", "кукла \"Barbie\"", 5.49, 1);
-            Console.Write("Укажите номер товара, который хотите выбрать: ");
-            
+            book1.ShowProduct();
+            book2.ShowProduct();
+            toy1.ShowProduct();
+            toy2.ShowProduct();
+
             while (!flagForExit)
             {
-                Console.WriteLine("Укажите номер товара, который хотите выбрать: ");
-                if (int.TryParse(Console.ReadLine(), out numberSelectedProduct) && numberSelectedProduct > 0 && numberSelectedProduct < 5)
+                Console.WriteLine("\nУкажите номер товара, который хотите выбрать или для выхода напишите: Выход");
+                var userEnter = Console.ReadLine();
+                if (int.TryParse(userEnter, out numberSelectedProduct) && numberSelectedProduct > 0 && numberSelectedProduct < 5)
                 {
                     switch (numberSelectedProduct)
                     {
                         case 1:
-                            Console.WriteLine("Добавлено в заказ: " + products.ProductType + " " + products.ProductName);
-                            book1.GetProduct();
-                            flagForExit = true;
+                            AddToOrder(products, book1, ref productInfos, ref productInfo);
                             break;
                         case 2:
-
-                            flagForExit = true;
+                            AddToOrder(products2, book2, ref productInfos, ref productInfo);
                             break;
                         case 3:
-                            flagForExit = true;
+                            AddToOrder(products3, toy2, ref productInfos, ref productInfo);
                             break;
                         case 4:
-                            flagForExit = true;
+                            AddToOrder(products4, toy2, ref productInfos, ref productInfo);
                             break;
                     }
+                    foreach (var item2 in productsAdd.productInfos)
+                    {
+                        Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
+                    }
+
                 }
                 else
-                {
-                    Console.WriteLine("Указано неверное значение!\nДля выхода напишите: Выход");
-                    Console.WriteLine("Или попробуйте еще раз.");
-                    if (Console.ReadLine() == "Выход")
-                        flagForExit = true;
-                }
+                    Console.WriteLine("Указано неверное значение!");
+                if (userEnter == "Выход")
+                    flagForExit = true;
             }
 
 
 
 
             Console.WriteLine("У вас в заказе:");
-            //book1.GetProduct("Книга", "\"Большая энциклопедия\"", 5.99, 1);
             Shop shop = new Shop();
             shop.GetDeliveryType();
+        }
+        private void AddToOrder(Products productsAdd, Product productAdd, ref List<ProductInfo> productInfosAdd, ref ProductInfo productInfoAdd)
+        {
+            Console.WriteLine("Добавлено в заказ: {0} {1}.\nВаш заказ:", productsAdd.ProductType, productsAdd.ProductName);
+            productAdd.GetProduct();
+            foreach (var item in productsAdd.productInfos)
+            {
+                Console.WriteLine(item.ProductTypeInf + " " + "1 шт. " + item.ProductNameInf + " стоимостью " + item.ProductPriceInf + "$");
+            }
+
+            //productInfosAdd.Add(productInfoAdd);
+
         }
     }
 }
