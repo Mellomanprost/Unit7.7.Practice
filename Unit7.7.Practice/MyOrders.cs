@@ -73,6 +73,7 @@ namespace Unit7._7.Practice
             Shop shop = new Shop();
             shop.GetDeliveryType();
         }
+
         private void GetProducts(ShopProduct productsAdd, ref (string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTuple)
         {
             prodTuple.ProdType = productsAdd.ProductType;
@@ -80,6 +81,7 @@ namespace Unit7._7.Practice
             prodTuple.ProdPrice = productsAdd.ProductPrice;
             prodTuple.NumOfProd = 1;
         }
+
         public ProductInfo GetProductsToList((string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTupleToList, out ProductInfo productInfoList)
         {
             ProductInfo productInfo = new ProductInfo
@@ -92,6 +94,7 @@ namespace Unit7._7.Practice
             productInfoList = productInfo;
             return productInfoList;
         }
+
         public void ShowMyOrder(List<ProductInfo> orderList)
         {
             double summPrice = 0;

@@ -9,18 +9,22 @@ namespace Unit7._7.Practice
     public abstract class Delivery
     {
         protected internal string Address;
+
         public virtual void GetDeliveryAddress()
         {
             Address = (Console.ReadLine()).ToString();
         }
+
     }
     public class HomeDelivery : Delivery
     {
+
         public override void GetDeliveryAddress()
         {
             Console.Write("Введите адрес доставки: ");
             base.GetDeliveryAddress();
         }
+
         public void GetDeliveryAddressForCourier()
         {
             GetDeliveryAddress();
@@ -79,6 +83,7 @@ namespace Unit7._7.Practice
     }
     public class ShopDelivery : Delivery
     {
+
         public override void GetDeliveryAddress()
         {
             Address = "у главного входа магазина " + Shop.shopName;
@@ -87,6 +92,7 @@ namespace Unit7._7.Practice
     }
     public class CurrentShop : Delivery
     {
+
         public override void GetDeliveryAddress()
         {
             Address = Shop.shopName + " расположенный по адресу пр-т Притыцкого 7";

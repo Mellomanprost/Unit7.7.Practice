@@ -37,11 +37,13 @@ namespace Unit7._7.Practice
     class SaleProduct
     {
         private ShopProduct shopProduct = new ShopProduct("Чай", "\"Lipton\" (25 пакетиков)", 0.99, 5);
+
         public void ShowProducts(int productSaleId)
         {
             Console.WriteLine("ВНИМАНИЕ! % Специальная цена %\nНомер - {0}:", productSaleId);
             shopProduct.ShowProducts();
         }
+
         public void GetSaleProduct(ref (string ProdType, string ProdName, double ProdPrice, int NumOfProd) prodTuple)
         {
             prodTuple.NumOfProd = 1;
@@ -68,7 +70,7 @@ namespace Unit7._7.Practice
             products.ShowProducts();
         }
     }
-     class ProductInfo
+    class ProductInfo
     {
         public string ProductTypeInf { get; set; }
         public string ProductNameInf { get; set; }
